@@ -5,8 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jquery-ui draggable实现拖拽滑块验证</title>
+    <link rel="stylesheet" href="plug-ins/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    这是draggable实现拖拽滑块验证
+    <div class="box" id="box">
+        <div class="box-dragged" id="boxDragged"></div>
+        <div class="box-slider" id="slider"></div>
+        <div class="box-nodragged" id="boxNoDragged">请拖动滑块解锁</div>
+    </div>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="plug-ins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+        $(function(){
+            var box = $("#box"), slider = $("#slider"),dragged = $("#boxDragged"), nodragged = $("#boxNoDragged");
+                w = box.width() - slider.width();
+                slider.draggable({
+                axis: "x",
+                containment: "#box",
+                revert: function(event, ui){
+                    var left = slider.position().left;
+                    if(left < (w - 2)){
+                        dragged.animate({"width": 0});
+                        return true;
+                    }
+                },
+                drag: function(event, ui){
+                    dragged.css("width" , ui.position.left + "px");
+                },
+                stop: function(event, ui){
+                    if(ui.position.left == (w-2)){
+                        alert("验证成功!");
+                        // 移除拖拽
+                        slider.draggable("disable").css("background", "#fff url('../imgs/duigou.png') no-repeat center center");
+                        nodragged.text("验证通过！");
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
