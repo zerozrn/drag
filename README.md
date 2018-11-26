@@ -1,6 +1,6 @@
-# 这是两个基于原生JavaScript和jquery-ui draggable制作的拖动滑块进行验证的Demo
+## 这是两个基于原生JavaScript和jquery-ui draggable制作的拖动滑块进行验证的Demo
 
-## demo1  
+### demo1  
     文件名：index.html
     ```
         document.addEventListener("DOMContentLoaded", function(){
@@ -58,7 +58,7 @@
     ```
     说明：纯js实现，无需依赖任何库，可能没有那么流畅~~~
 
-## demo2 
+### demo2 
     文件名：index1.html
     依赖：
     ```
